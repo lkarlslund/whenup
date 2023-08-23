@@ -12,6 +12,7 @@ import (
 /*
 ENUM(
 
+	Unknown
 	Up
 	Down
 
@@ -39,7 +40,7 @@ func monitor(host string, method LiveMethod, interval, tolerance time.Duration) 
 
 		monitor.SetPrivileged(true)
 
-		laststate := Down
+		laststate := Unknown
 		lastup := time.Now()
 
 		monitor.OnRecv = func(_ *probing.Packet) {

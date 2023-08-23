@@ -68,19 +68,22 @@ func (x *LiveMethod) UnmarshalText(text []byte) error {
 }
 
 const (
+	// Unknown is a Status of type Unknown.
+	Unknown Status = iota
 	// Up is a Status of type Up.
-	Up Status = iota
+	Up
 	// Down is a Status of type Down.
 	Down
 )
 
 var ErrInvalidStatus = errors.New("not a valid Status")
 
-const _StatusName = "UpDown"
+const _StatusName = "UnknownUpDown"
 
 var _StatusMap = map[Status]string{
-	Up:   _StatusName[0:2],
-	Down: _StatusName[2:6],
+	Unknown: _StatusName[0:7],
+	Up:      _StatusName[7:9],
+	Down:    _StatusName[9:13],
 }
 
 // String implements the Stringer interface.
@@ -99,8 +102,9 @@ func (x Status) IsValid() bool {
 }
 
 var _StatusValue = map[string]Status{
-	_StatusName[0:2]: Up,
-	_StatusName[2:6]: Down,
+	_StatusName[0:7]:  Unknown,
+	_StatusName[7:9]:  Up,
+	_StatusName[9:13]: Down,
 }
 
 // ParseStatus attempts to convert a string to a Status.

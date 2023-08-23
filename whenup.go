@@ -132,14 +132,17 @@ mainloop:
 		if *notify {
 			beeep.Notify("whenup", "Host "+*host+" is "+status.String(), "")
 		}
+		log.Println("Host " + *host + " is " + status.String())
 
 		if *kill && status == Down && cmd != nil && cmd.Process != nil {
+			log.Println("Terminating running process")
 			cmd.Process.Kill()
 			cmd = nil
 		}
 
 		// if command line args were given, run the command
 		if status == Up && len(commandargs) > 0 && cmd == nil {
+			log.Println("Starting process")
 			if *delay > 0 {
 				time.Sleep(time.Duration(*delay) * time.Millisecond)
 			}

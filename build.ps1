@@ -29,4 +29,4 @@ function BuildVariants {
 Set-Location $PSScriptRoot
 
 # Release
-BuildVariants -ldflags "$LDFLAGS -s" -prefix whenup -path . -arch @("386", "amd64", "arm", "arm64") -os @("windows", "linux", "darwin", "freebsd", "openbsd")
+BuildVariants -ldflags "$LDFLAGS -s" -prefix whenup -path . -arch @("386", "amd64", "arm", "arm64") -os @("windows", "linux", "darwin", "openbsd")

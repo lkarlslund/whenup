@@ -1,5 +1,7 @@
 # whenup
-Allows you to start processes when a host is up, or just monitor its status using ICMP
+*Start processes when a host is up, or just monitor its status using ICMP*
+
+[![GitHub all releases](https://img.shields.io/github/downloads/lkarlslund/whenup/total)](https://github.com/lkarlslund/whenup/releases) ![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/lkarlslund/whenup/prerelease.yml?branch=main)
 
 If you're like me and doing lots of reconfigurations to stuff, that require a restart, it's very useful to be able to connect or run a command when the unit is ready again. The 'whenup' tool solves this:
 
@@ -8,6 +10,20 @@ whenup ssh myuser@mythingamabob
 ````
 
 This tests for ICMP ping responses from mythingamabob before running the ssh command. The tool automagically figures out that mythingamabob is the host to check, using various hardcoded match patterns - this can be overridden on the command line, and there are lots of options to customize the behaviour.
+
+Example: Terminate ssh and keep reconnecting when host is back up:
+
+````
+whenup -c -k ssh myuser@mythingamabob
+````
+
+Example: Just monitor host availability with toast notifications:
+
+````
+whenup -c -h mythingamabob
+````
+
+## Full command line options:
 
 ````
 whenup [-h|--host hostname|ip] [-i|--interval 200] [-t|--tolerance 1000] [-d|--delay 2000] [-m|--mode icmp] [-n|--notify true] [-c|--continious false] [-k|--kill false] [--] command [arguments]
